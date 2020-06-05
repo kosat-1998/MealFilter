@@ -4,22 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealfilter.R
 import com.example.mealfilter.adapter.MealAdapter
-import com.example.mealfilter.ui.chicken.ChickenViewModel
-import kotlinx.android.synthetic.main.fragment_chicken.*
+import com.example.mealfilter.viewmodel.MealViewModel
 import kotlinx.android.synthetic.main.fragment_seafood.*
 
 class SeaFoodFragment : Fragment() {
 
-    private lateinit var seaFoodViewModel: SeaFoodViewModel
+    private lateinit var seaFoodViewModel: MealViewModel
     private lateinit var seafoodAdapter: MealAdapter
 
     override fun onCreateView(
@@ -43,13 +39,13 @@ class SeaFoodFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        seaFoodViewModel.loadResult("Seafood")
+        seaFoodViewModel.loadMeal("Seafood")
     }
 
     fun obserViewModel() {
-        seaFoodViewModel = ViewModelProvider(this).get(SeaFoodViewModel::class.java)
+        seaFoodViewModel = ViewModelProvider(this).get(MealViewModel::class.java)
 
-        seaFoodViewModel.getSeaFood().observe(viewLifecycleOwner,
+        seaFoodViewModel.getMeal().observe(viewLifecycleOwner,
             Observer {
                 seafoodAdapter.upDateList(it)
             })

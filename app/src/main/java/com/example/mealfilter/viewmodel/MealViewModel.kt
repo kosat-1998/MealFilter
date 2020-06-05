@@ -1,4 +1,4 @@
-package com.example.mealfilter.ui.seafood
+package com.example.mealfilter.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,15 +11,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SeaFoodViewModel : ViewModel() {
-
+class MealViewModel : ViewModel() {
     var result: MutableLiveData<List<MealX>> = MutableLiveData()
 
-    fun getSeaFood(): LiveData<List<MealX>> = result
+    fun getMeal(): LiveData<List<MealX>> = result
     private val mealApi = MealApi()
 
-    fun loadResult(search: String) {
-        val apiCall = mealApi.getSeaFood(search)
+    fun loadMeal(search: String) {
+        val apiCall = mealApi.getMeal(search)
 
         apiCall.enqueue(object : Callback<Meal> {
             override fun onFailure(call: Call<Meal>, t: Throwable) {
@@ -28,8 +27,8 @@ class SeaFoodViewModel : ViewModel() {
 
             override fun onResponse(call: Call<Meal>, response: Response<Meal>) {
                 response.isSuccessful.let {
-                    var seafoodList: List<MealX> = response.body()?.meals ?: emptyList()
-                    result.value = seafoodList
+                    var mealList: List<MealX> = response.body()?.meals ?: emptyList()
+                    result.value = mealList
                 }
             }
         })

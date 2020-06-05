@@ -12,11 +12,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealfilter.R
 import com.example.mealfilter.adapter.MealAdapter
+import com.example.mealfilter.viewmodel.MealViewModel
 import kotlinx.android.synthetic.main.fragment_chicken.*
 
 class ChickenFragment : Fragment() {
 
-    private lateinit var chickenViewModel: ChickenViewModel
+    private lateinit var chickenViewModel: MealViewModel
     private lateinit var chickenAdapter: MealAdapter
 
     override fun onCreateView(
@@ -41,13 +42,13 @@ class ChickenFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        chickenViewModel.loadResult("Chicken")
+        chickenViewModel.loadMeal("Chicken")
     }
 
     fun obserViewModel() {
-        chickenViewModel = ViewModelProvider(this).get(ChickenViewModel::class.java)
+        chickenViewModel = ViewModelProvider(this).get(MealViewModel::class.java)
 
-        chickenViewModel.getChicken().observe(viewLifecycleOwner,
+        chickenViewModel.getMeal().observe(viewLifecycleOwner,
             Observer {
                 chickenAdapter.upDateList(it)
             })

@@ -8,13 +8,6 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @GET("filter.php")
-    fun getBeef(@Query("c") search: String):Call<Meal>
-
-    @GET("filter.php")
-    fun getChicken (@Query("c") search: String): Call<Meal>
-
-    @GET("filter.php")
-    fun getSeaFood(@Query("c") search: String):Call<Meal>
-
+    fun getMeal(@Query("c") search: String): Call<Meal>
 
 }

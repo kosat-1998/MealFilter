@@ -19,8 +19,6 @@ class MealApi {
         apiInterface = retrofit.create(ApiInterface::class.java)
 
     }
+    fun getMeal(search: String) = apiInterface.getMeal(search)
 
-    fun getBeef(search: String) = apiInterface.getBeef(search)
-    fun getChicken(search: String) = apiInterface.getChicken(search)
-    fun getSeaFood(search: String) = apiInterface.getSeaFood(search)
 }
